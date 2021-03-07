@@ -23,32 +23,55 @@
             }
 
             function game() {
+                for (let i = 0; i < 5; i++) {
+
                 playerInput();
-                console.log(playRound(playerSelection, computerSelection));
-               }
+                console.log(playRound(playerSelection, computerPlay()));
+                console.log(`Computer score = ${comp}`);
+                console.log(`Player score = ${play}`);
+
+                }
+                console.log(result());
+            }
+            
+            
+
 
             function playerInput() {
                 playerSelection = properCase(prompt(String("Rock, Paper, or Scissors?")));
             }
-
+            
             function playRound(playerSelection, computerSelection) {
                 if ((computerSelection == "Rock" && playerSelection == "Rock") || (computerSelection =="Paper" && playerSelection == "Paper") || (computerSelection == "Scissors" && playerSelection == "Scissors")) {
                     return `Tie, no winner. Computer: ${computerSelection} Player: ${playerSelection}`;
             } else if ((computerSelection == "Rock" && playerSelection == "Scissors") || (computerSelection == "Paper" && playerSelection == "Rock") || (computerSelection == "Scissors" && playerSelection == "Paper")) {
+                    comp++;
                     return `Computer wins! Computer: ${computerSelection} Player: ${playerSelection}`;
             } else if((computerSelection == "Rock" && playerSelection == "Paper") || (computerSelection == "Paper" && playerSelection == "Scissors") || (computerSelection == "Scissors" && playerSelection == "Rock")) {
+                    play++;
                     return `Player wins! Computer: ${computerSelection} Player: ${playerSelection}`;
             }
         }
+
+            let result = () => {
+                if (comp == play) {
+                    return `Game ends in a tie! Both players had ${play} points.`;
+                } else if (comp > play) {
+                    return `Computer wins with a score of ${comp}`;
+                } else if (play > comp) {
+                    return `Player wins with a score of ${play}`;
+                } else {
+                    return `what happened?`;
+                }
+            }
             const plays = ["Rock","Paper","Scissors"];
             let playerSelection;
-            let computerSelection = computerPlay();
+            let computerSelection = String(computerPlay());
+            let comp = 0;
+            let play = 0;
 
-            console.log("Welcome to Rock, Paper, Scissors!")
+            console.log("Welcome to Rock, Paper, Scissors!");
             game();
-            game();
-            game();
-            //console.log(playRound(playerSelection, computerSelection));
         </script>
     </body>
 </html>
