@@ -6,35 +6,49 @@
     <body>
         <script>
             //JS here
+
             function properCase(string) {
                 return string.replace(/\w\S*/g, function(txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        }
-        );
-        };
+                }
+            );
+            };
 
-            const plays = ["Rock","Paper","Scissors"];
-            let randnum = () => Number(Math.floor(Math.random()*Math.floor(4)));
-            
+            function randnum() {
+                return Number(Math.floor(Math.random()*Math.floor(3)));
+            }
+             
             function computerPlay() {
-                return plays[randnum()];
+                return String(plays[randnum()]);
+            }
+
+            function game() {
+                playerInput();
+                console.log(playRound(playerSelection, computerSelection));
+               }
+
+            function playerInput() {
+                playerSelection = properCase(prompt(String("Rock, Paper, or Scissors?")));
             }
 
             function playRound(playerSelection, computerSelection) {
                 if ((computerSelection == "Rock" && playerSelection == "Rock") || (computerSelection =="Paper" && playerSelection == "Paper") || (computerSelection == "Scissors" && playerSelection == "Scissors")) {
-                    console.log("Tie, no winner.");
+                    return `Tie, no winner. Computer: ${computerSelection} Player: ${playerSelection}`;
             } else if ((computerSelection == "Rock" && playerSelection == "Scissors") || (computerSelection == "Paper" && playerSelection == "Rock") || (computerSelection == "Scissors" && playerSelection == "Paper")) {
-                    console.log("Computer wins!");
-            } else if ((computerSelection == "Rock" && playerSelection == "Paper") || (computerSelection == "Paper" && playerSelection == "Scissors") || (computerSelection == "Scissors" && playerSelection == "Rock")) {
-                    console.log("Player wins!");
-            } else {
-                    console.log("error");
+                    return `Computer wins! Computer: ${computerSelection} Player: ${playerSelection}`;
+            } else if((computerSelection == "Rock" && playerSelection == "Paper") || (computerSelection == "Paper" && playerSelection == "Scissors") || (computerSelection == "Scissors" && playerSelection == "Rock")) {
+                    return `Player wins! Computer: ${computerSelection} Player: ${playerSelection}`;
             }
         }
-        
-            const playerSelection = "Rock";
-            const computerSelection = computerPlay();
-            console.log(playRound(playerSelection, computerSelection));
+            const plays = ["Rock","Paper","Scissors"];
+            let playerSelection;
+            let computerSelection = computerPlay();
+
+            console.log("Welcome to Rock, Paper, Scissors!")
+            game();
+            game();
+            game();
+            //console.log(playRound(playerSelection, computerSelection));
         </script>
     </body>
 </html>
